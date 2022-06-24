@@ -1,9 +1,11 @@
 const { Router } = require('express');
-const axios = require('axios');
+//const axios = require('axios');
 //const Videogame = require('../models/Videogame');
 //const Gender = require('../models/Gender');
-const {Videogame, Gender} = require('../db')
-const {APIKEY} = process.env;
+//const {Videogame, Gender} = require('../db')
+const videogames = require('../routes/videogames/router');
+const gender = require('../routes/gender/router');
+const videogame = require('../routes/videogame/router');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -15,21 +17,24 @@ const router = Router();
 
 
 module.exports = router;
-
-const getApiGames = async()=>{
+router.use('/videogames',videogames);
+router.use('/videogame', videogame)
+router.use('/genres', gender)
+/* const getApiGames = async()=>{
     try {
         
-        const gameUrl = await axios.get(`https://api.rawg.io/api/games?key=${APIKEY}`);
+        //const gameUrl = await axios.get(`https://api.rawg.io/api/games?key=${APIKEY}`);
+        const gameUrl = await axios.get('https://api.rawg.io/api/games?key=a6b2b8aa89d9489f9692a47d249a5b6c&page_size=20&page=5')
         const apiGame = await gameUrl.data?.results.map(el => {
             return {
-                //id:el.id,
+                id:el.id,
                 name:el.name,
                 rating:el.rating,
                 platforms:el.platforms.map(el => el.platform.name),
                 release_date:el.platforms.map(el => el.released_at)
                 
             }
-        })
+        }) */
             /* return{
                 name:el.name,
                 rating:el.results.rating,
@@ -37,13 +42,13 @@ const getApiGames = async()=>{
                 //release_date:el.platforms.map(el => el.released_at)
             }
         }); */
-        return apiGame;
+/*         return apiGame;
     } catch (error) {
         return new Error(error + 'error en la API')
     }
-}
+} */
 
-const getMyDb = async() => {
+/* const getMyDb = async() => {
     return await Videogame.findAll({
         include:{
             model:Gender,
@@ -67,8 +72,8 @@ const getAllGames = async()=>{
     } catch (error) {
         return new Error(error +'No entramos en el getAllGames')
     }
-}
-router.get('/videogames', async(req, res) =>{
+} */
+/* router.get('/videogames', async(req, res) =>{
     try {
         const {name} = req.query;
         const gamesTotal = await getAllGames();
@@ -80,32 +85,37 @@ router.get('/videogames', async(req, res) =>{
          
     
         }else{
+            console.log(gamesTotal.length)
             res.status(200).send(gamesTotal)
         }   
     } catch (error) {
         res.status(404).send('NO entramos en el get')
     }
-});
+}); */
 
-router.get('/videogames/:id', async(req, res, next)=>{
+
+
+/* router.get('/videogame/:id', async(req, res, next)=>{
     const {id} = req.params;
     try {
-        const gamesID = await getAllGames();
+        const gamesID = await getApiGames();
+        console.log(gamesID[0].id)
         if(id){
-            let gameId = gamesID.filter(el => el.id == id);
-            gameId
-                ?res.status(200).send(gameId)
-                :res.status(404).send('No se encontro un video juego con ese nombre')
+            let gameId = gamesID.filter(el => el.id == id) ;
+            
+            gameId.length
+                ?res.status(200).json(gameId)
+                :res.status(404).send('No se encontro un video juego con ese ID') */
             /* gameName.length
                 ?res.status(200).json(gameName)
                 :res.status(404).send('No se encontro un ID') */
-        }
+/*         }
     } catch (error) {
         next(error)
     }
-});
+}); */
 
-router.post('/videogames', async(req, res, next) =>{
+/* router.post('/videogames', async(req, res, next) =>{
     try {
         
         let{
@@ -153,3 +163,4 @@ router.get('/genres', async(req, res, next)=>{
         next(error);
     }
 });
+ */

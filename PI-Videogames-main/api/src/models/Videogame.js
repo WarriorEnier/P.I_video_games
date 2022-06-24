@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     description:{
       type:DataTypes.TEXT,
@@ -23,7 +24,8 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.NOW
     },
     rating:{
-      type:DataTypes.FLOAT
+      type:DataTypes.FLOAT,
+      defaultValue: 1.0,
     },
     platforms:{
       type:DataTypes.ARRAY(DataTypes.STRING),
