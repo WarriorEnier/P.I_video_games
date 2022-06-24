@@ -27,6 +27,11 @@ module.exports = (sequelize) => {
       type:DataTypes.FLOAT,
       defaultValue: 1.0,
     },
+    image:{
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: `${this.name}.jpg`
+    },
     platforms:{
       type:DataTypes.ARRAY(DataTypes.STRING),
       allowNull:false

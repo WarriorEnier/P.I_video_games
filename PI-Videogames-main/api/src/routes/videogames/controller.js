@@ -16,10 +16,11 @@ const  getVideoGames = async(req, res) =>{
     
         }else{
             //console.log(gamesTotal.filter(el => el.id == 3498))
-            res.status(200).send(gamesTotal)
+            console.log(gamesTotal.length)
+            return res.status(200).send(gamesTotal)
         }   
     } catch (error) {
-        res.status(404).send('NO entramos en el get')
+        return res.status(404).send('NO entramos en el get')
     }
 }
 
