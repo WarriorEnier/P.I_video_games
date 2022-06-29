@@ -1,5 +1,5 @@
 import React from "react";
-import { getGenres, filterByGenres } from "../actions";
+import { getGenres, filterByGenres, getVideoGames} from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -9,7 +9,8 @@ export default function Gender(){
 
     useEffect(()=>{
         dispatch(getGenres());
-        dispatch(filterByGenres())
+        //dispatch(getVideoGames());
+        //dispatch(filterByGenres())
     },[])
 
     function handleFilterGenres(e){

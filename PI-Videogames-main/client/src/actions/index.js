@@ -2,6 +2,8 @@ import axios from 'axios';
 export const GET_VIDEOGAMES = 'OBTENER VIDEOJUEGOS'
 export const GET_GENRES = 'OBTENER GENEROS'
 export const FILTER_BY_GENRES = 'FILTRAR POR GENERO'
+export const FILTER_CREATED = 'FILTRAR POR CREADO'
+export const ORDENAMIENTO = 'ORDENAMIENTO ASC DES'
 const URL_VIDEOGAMES = 'http://localhost:3001/videogames';
 const URL_GENRES = 'http://localhost:3001/genres';
 
@@ -35,4 +37,18 @@ export const filterByGenres=(payload)=>{
         payload
     }
     
+}
+
+export const filterByOrdenamiento = (payload) =>{
+    return {
+        type: ORDENAMIENTO,
+        payload
+    }
+}
+
+export const filterCreated = (payload) =>{
+    return {
+        type: FILTER_CREATED,
+        payload
+    }
 }

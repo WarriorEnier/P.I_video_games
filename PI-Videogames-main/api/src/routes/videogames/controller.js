@@ -1,5 +1,5 @@
 const {getAllGames} = require('../llamados');
-const {Videogame, Gender} = require('../../db');
+const {Videogame, Genre} = require('../../db');
 
 const  getVideoGames = async(req, res) =>{
     try {
@@ -38,6 +38,7 @@ const postVideoGames = async(req, res, next) =>{
         } = req.body;
 
         const nameTable = await getAllGames();
+        if(!name || !description || !platforms) return res.status(404).send('Falta un valor obligatorio')
         const result = nameTable.filter(el => el.name.toLowerCase() === name.toLowerCase())
         console.log(result.name)
         if(!result.length){
@@ -51,9 +52,9 @@ const postVideoGames = async(req, res, next) =>{
                 createdInDb
             })
         
-            let genreDb = await Gender.findAll({where: {name:genre}})
+            let genreDb = await Genre.findAll({where: {name:genre}})
             //console.log(genreDb)
-            gameCreate.addGender(genreDb)
+            gameCreate.addGenre(genreDb)
             return res.send('Personaje creado con exito')
         }
         return res.send(`Personaje ${name} ya se encuentra en nuestra BD`)

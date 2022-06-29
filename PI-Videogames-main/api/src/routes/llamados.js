@@ -1,4 +1,4 @@
-const {Videogame, Gender} = require('../db')
+const {Videogame, Genre} = require('../db')
 const axios = require('axios');
 
 
@@ -40,7 +40,7 @@ const getMyDb = async() => {
         
         const db =  await Videogame.findAll({
             include:{
-                model:Gender,
+                model:Genre,
                 attributes:['name'],
                 through:{
                     attributes:[],
@@ -70,11 +70,11 @@ const getAllGames = async()=>{
     }
 }
 
-/* const getApiGamesGender = async()=>{
+/* const getApiGamesGenre = async()=>{
     try{
         return axios.get(`https://api.rawg.io/api/genres?key=${APIKEY}`)
     }catch(error){
-        return new Error(error + ' No entramos en getApiGamesGender')
+        return new Error(error + ' No entramos en getApiGamesGenre')
     }
 } */
 

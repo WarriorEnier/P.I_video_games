@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
-const {getGender} = require('./controller')
+const {getGenre} = require('./controller')
 
-router.get('/', getGender);
+router.get('/', getGenre);
 
 module.exports = router;

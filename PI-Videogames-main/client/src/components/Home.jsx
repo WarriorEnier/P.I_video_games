@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom'
 import Card from "./Card";
 import Gender from "./Gender";
 import Paginado from "./Paginado";
+import Creado from "./Creado";
+import Ordenamiento from "./Ordenamiento";
 
 export default function Home(){
     //mapDispatchToProps
@@ -43,11 +45,8 @@ export default function Home(){
             <h1>VIDEOGAMES</h1>
             <button onClick={e=>{handleClick(e)}}>Mostrar VideoGames</button>
             <div>
-                <select name="" id="">
-                    <option value="asc">Ascendente</option>
-                    <option value="desc">Descendente</option>
-                </select>
-
+                
+            <Ordenamiento setCurrentPage={setCurrentPage}/>
                 
 
                     <Gender />       
@@ -60,11 +59,7 @@ export default function Home(){
                     {/* <option value="act">Action</option>
                     <option value="ave">Aventura</option> */}
                 
-                <select name="" id="">
-                    <option value="all">Todos</option>
-                    <option value="cre">Creados</option>
-                    <option value="exi">Existentes</option>
-                </select>
+              <Creado />
                 <Paginado
                     videoGamePerPage={videoGamePerPage} 
                     allVideoGames={allVideoGames.length} 
