@@ -34,13 +34,15 @@ const postVideoGames = async(req, res, next) =>{
             release_date,
             description,
             createdInDb,
-            genre
+            genre,
+            image
         } = req.body;
 
         const nameTable = await getAllGames();
         if(!name || !description || !platforms) return res.status(404).send('Falta un valor obligatorio')
         const result = nameTable.filter(el => el.name.toLowerCase() === name.toLowerCase())
         console.log(result.name)
+        
         if(!result.length){
 
             const gameCreate = await Videogame.create({
@@ -49,7 +51,8 @@ const postVideoGames = async(req, res, next) =>{
                 platforms,
                 release_date,
                 description,
-                createdInDb
+                createdInDb,
+                image
             })
         
             let genreDb = await Genre.findAll({where: {name:genre}})

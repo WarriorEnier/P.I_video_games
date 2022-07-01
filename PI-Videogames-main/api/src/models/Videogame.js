@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
     image:{
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: `${this.name}.jpg`
+      defaultValue: 'https://wpdirecto.com/wp-content/uploads/2017/08/alt-de-una-imagen.png'
     },
     platforms:{
       type:DataTypes.ARRAY(DataTypes.STRING),
