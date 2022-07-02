@@ -32,14 +32,14 @@ const postVideoGames = async(req, res, next) =>{
             rating,
             platforms,
             release_date,
-            description,
+            description_raw,
             createdInDb,
             genre,
             image
         } = req.body;
 
         const nameTable = await getAllGames();
-        if(!name || !description || !platforms) return res.status(404).send('Falta un valor obligatorio')
+        if(!name || !description_raw || !platforms) return res.status(404).send('Falta un valor obligatorio')
         const result = nameTable.filter(el => el.name.toLowerCase() === name.toLowerCase())
         console.log(result.name)
         
@@ -50,7 +50,7 @@ const postVideoGames = async(req, res, next) =>{
                 rating,
                 platforms,
                 release_date,
-                description,
+                description_raw,
                 createdInDb,
                 image
             })
